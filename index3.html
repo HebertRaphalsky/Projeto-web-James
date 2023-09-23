@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UnisSales | Centro Universitário Salesiano</title>
+    <link rel="shortcut icon" type="imagex/png" href="./img/favicon.png">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/estilo.css" /> <!-- Importa o arquivo de estilo CSS -->
+</head>
+
+<body>
+
+    <div id="navegacao"> <!-- Divisão para a navegação -->
+        <div id="area">
+            <h1 id="logo"><span class="azul">UniSales</span></h1> <!-- Título com a classe azul -->
+            <div id="menu"> <!-- Menu de navegação -->
+                <a href="index.html">Professor</a> <!-- Links para diferentes páginas -->
+                <a href="index2.html">Curso</a>
+                <a href="index3.html">Sala</a>
+                <a href="index4.html">Período</a>
+                <a href="index5.html">Horários</a>
+                <a href="index6.html">Desafios</a>
+                <a href="indexTab.html">...</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="area-principal"> <!-- Área principal da página -->
+
+        <div id="core"> <!-- Núcleo da página -->
+
+            <div >
+
+                <div id="dcp" class="combo">
+                    <label for="dcp">Numero Sala -</label> <!-- Rótulo para o campo de disciplina -->
+                    <input type="text" id="roomNumber" name="dcp">
+                </div>
+
+                <div class="navbar">
+                    <button class="btn btnInsert" onclick="saveRoomNumber()">Incluir</button> <!-- Botão para inclusão de dados -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script> <!-- Importa o arquivo de script JavaScript -->
+    
+</body>
+</html>
