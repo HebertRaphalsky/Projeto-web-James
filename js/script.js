@@ -164,9 +164,96 @@ window.onload = function() {
 
             tableBody.appendChild(row);
         }
-    } else {
-        alert('Nenhum dado disponível para exibir.');
+        
+  
     }
 }
+
+function removerItemTabela(TabAll) {
+    let professorNames = JSON.parse(localStorage.getItem('professorNames')) || [];
+    let courseNames = JSON.parse(localStorage.getItem('courseNames')) || [];
+    let roomNumbers = JSON.parse(localStorage.getItem('roomNumbers')) || [];
+    let classPeriods = JSON.parse(localStorage.getItem('classPeriods')) || [];
+    let classTimes = JSON.parse(localStorage.getItem('classTimes')) || [];
+    let subjectNames = JSON.parse(localStorage.getItem('subjectNames')) || [];
+  
+    if (TabAll >= 0 && TabAll < professorNames.length) {
+
+      professorNames.splice(TabAll, 1);
+      courseNames.splice(TabAll, 1);
+      roomNumbers.splice(TabAll, 1);
+      classPeriods.splice(TabAll, 1);
+      classTimes.splice(TabAll, 1);
+      subjectNames.splice(TabAll, 1);
+  
+      localStorage.setItem('professorNames', JSON.stringify(professorNames));
+      localStorage.setItem('courseNames', JSON.stringify(courseNames));
+      localStorage.setItem('roomNumbers', JSON.stringify(roomNumbers));
+      localStorage.setItem('classPeriods', JSON.stringify(classPeriods));
+      localStorage.setItem('classTimes', JSON.stringify(classTimes));
+      localStorage.setItem('subjectNames', JSON.stringify(subjectNames));
+  
+  }
+  
+  window.onload = function () {
+    var professorNames = JSON.parse(localStorage.getItem('professorNames')) || [];
+    var courseNames = JSON.parse(localStorage.getItem('courseNames')) || [];
+    var roomNumbers = JSON.parse(localStorage.getItem('roomNumbers')) || [];
+    var classPeriods = JSON.parse(localStorage.getItem('classPeriods')) || [];
+    var classTimes = JSON.parse(localStorage.getItem('classTimes')) || [];
+    var subjectNames = JSON.parse(localStorage.getItem('subjectNames')) || [];
+  
+    var tableBody = document.getElementById('tableBody');
+  
+    if (professorNames.length > 0) {
+      for (var i = 0; i < professorNames.length; i++) {
+        var row = document.createElement('tr');
+  
+        var cell1 = document.createElement('td');
+        cell1.textContent = professorNames[i];
+        row.appendChild(cell1);
+  
+        var cell2 = document.createElement('td');
+        cell2.textContent = courseNames[i] || '-';
+        row.appendChild(cell2);
+  
+        var cell3 = document.createElement('td');
+        cell3.textContent = roomNumbers[i] || '-';
+        row.appendChild(cell3);
+  
+        var cell4 = document.createElement('td');
+        cell4.textContent = classPeriods[i] || '-';
+        row.appendChild(cell4);
+  
+        var cell5 = document.createElement('td');
+        cell5.textContent = classTimes[i] || '-';
+        row.appendChild(cell5);
+  
+        var cell6 = document.createElement('td');
+        cell6.textContent = subjectNames[i] || '-';
+        row.appendChild(cell6);
+  
+        var cell7 = document.createElement('td');
+        var removeButton = document.createElement('button');
+        removeButton.textContent = 'Remover';
+        removeButton.onclick = function (index) {
+          return function () {
+
+            var removed = removerItemTabela(index);
+            if (removed) {
+
+                tableBody.removeChild(tableBody.childNodes[index]);
+            }
+          };
+        }(i); 
+        cell7.appendChild(removeButton);
+        row.appendChild(cell7);
+  
+        tableBody.appendChild(row);
+      }
+    }
+  };
+}
+  
 
 
