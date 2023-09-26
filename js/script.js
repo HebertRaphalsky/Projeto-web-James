@@ -169,7 +169,8 @@ window.onload = function() {
     }
 }
 
-function removerItemTabela(TabAll) {
+function removerItemTabela(indice) {
+
     let professorNames = JSON.parse(localStorage.getItem('professorNames')) || [];
     let courseNames = JSON.parse(localStorage.getItem('courseNames')) || [];
     let roomNumbers = JSON.parse(localStorage.getItem('roomNumbers')) || [];
@@ -177,14 +178,14 @@ function removerItemTabela(TabAll) {
     let classTimes = JSON.parse(localStorage.getItem('classTimes')) || [];
     let subjectNames = JSON.parse(localStorage.getItem('subjectNames')) || [];
   
-    if (TabAll >= 0 && TabAll < professorNames.length) {
+    if (indice >= 0 && indice < professorNames.length) {
 
-      professorNames.splice(TabAll, 1);
-      courseNames.splice(TabAll, 1);
-      roomNumbers.splice(TabAll, 1);
-      classPeriods.splice(TabAll, 1);
-      classTimes.splice(TabAll, 1);
-      subjectNames.splice(TabAll, 1);
+        professorNames.splice(indice, 1);
+      courseNames.splice(indice, 1);
+      roomNumbers.splice(indice, 1);
+      classPeriods.splice(indice, 1);
+      classTimes.splice(indice, 1);
+      subjectNames.splice(indice, 1);
   
       localStorage.setItem('professorNames', JSON.stringify(professorNames));
       localStorage.setItem('courseNames', JSON.stringify(courseNames));
@@ -193,6 +194,10 @@ function removerItemTabela(TabAll) {
       localStorage.setItem('classTimes', JSON.stringify(classTimes));
       localStorage.setItem('subjectNames', JSON.stringify(subjectNames));
   
+      return true;
+    } else {
+      return false;
+    }
   }
   
   window.onload = function () {
@@ -238,11 +243,10 @@ function removerItemTabela(TabAll) {
         removeButton.textContent = 'Remover';
         removeButton.onclick = function (index) {
           return function () {
-
             var removed = removerItemTabela(index);
             if (removed) {
-
-                tableBody.removeChild(tableBody.childNodes[index]);
+              // Remove a linha da tabela se a remoção foi bem-sucedida
+              tableBody.removeChild(tableBody.childNodes[index]);
             }
           };
         }(i); 
@@ -253,7 +257,6 @@ function removerItemTabela(TabAll) {
       }
     }
   };
-}
   
 
 
